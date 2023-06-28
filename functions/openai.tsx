@@ -5,7 +5,7 @@ const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-var qa = [];
+var qa = ["default"];
 
 
 

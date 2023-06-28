@@ -1,7 +1,6 @@
 import React from "react";
 
 import {initialCompletion, nextCompletion} from '../functions/openai';
-import { Component2 } from '../components/FigmaCustomizeInterview/Component2';
 import { useState } from "react";
 
 export function Start(props) {
@@ -11,7 +10,7 @@ export function Start(props) {
         setState(state-1);
     }
 return(
-<div className="flex flex-col space-y-16 items-center py-10 h-screen">
+<div className="flex flex-col space-y-16 items-center py-32">
     
     <h1 className="w-4/5 text-4xl text-">Enter The Details For Your Interview</h1>
     

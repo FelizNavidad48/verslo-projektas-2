@@ -2,25 +2,9 @@
 import React from 'react';
 import {Start} from '../components/start';
 import {initialCompletion, nextCompletion} from '../functions/openai';
-import { Component2 } from '../components/FigmaCustomizeInterview/Component2';
-class Home extends React.Component  {
-  constructor(props){
-    super(props)
-    this.state = {
-      counter: 0
-    };
-    this.increment = this.increment.bind(this);
-  }
-
-  increment() {
-    this.setState(state => ({
-      counter: state.counter + 1
-    }));
-  }
-
-  render(){
+export default function Home(){
     return (
-    <div className=''>
+    <div>
       <Start/>
 
       <p>
@@ -49,7 +33,7 @@ class Home extends React.Component  {
       
       <button onClick={() => {
         initialCompletion();
-        this.increment();
+        
       }}    
       > Submit </button>
 
@@ -61,12 +45,12 @@ class Home extends React.Component  {
     
       <button onClick={() => {
         nextCompletion();
-        this.increment();
+  
       }}> Next Question </button>
 
       <br />
 
-      <h1>{this.state.counter === 0 ? "Start Interview" : "Question Number " + this.state.counter} </h1> 
+      
       
       <br />
 
@@ -75,6 +59,6 @@ class Home extends React.Component  {
     </div>
   );
 }
-}
 
-export default Home
+
+
