@@ -13,38 +13,7 @@
   bottom: 0;
   background-color: #000;
 }
-.home {
-  color: #fff;
-  font-size: 21px;
-  line-height: 46.5px;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
-  position: absolute;
-  left: 77.7778%;
-  right: 16.6667%;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.about {
-  color: #fff;
-  font-size: 21px;
-  line-height: 46.5px;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
-  position: absolute;
-  left: 88.8889%;
-  right: 5.5556%;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+
 .blackWhiteMinimalistCalligraph {
   position: absolute;
   left: 5.5556%;
@@ -54,5 +23,5 @@
   background-image: /* webpackIgnore: false */ url('logo.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
