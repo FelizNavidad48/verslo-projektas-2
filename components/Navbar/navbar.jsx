@@ -7,7 +7,7 @@ export function Navbar () {
         <nav className='flex justify-center items-center rectangle'>
         
           <div className=''>
-                <Image src="/logo2.png" width={210} height={210} alt='Logo picture'/>
+                <Image unoptimized src="/logo2.png" width={210} height={210} alt='Logo picture'/>
           </div>
 
         </nav>
