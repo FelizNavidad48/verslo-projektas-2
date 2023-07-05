@@ -1,9 +1,13 @@
+'use client';
 import React from "react";
 import styles from './start.css'
 import {MdNavigateNext} from 'react-icons/md';
+
+import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 import {initialCompletion, nextCompletion} from '../functions/openai';
 import { useState } from "react";
-
+import { writeInitialCustomizationData } from "../functions/database";
 export function Start(props) {
     const [state, setState] = useState(0);
 
@@ -37,10 +41,13 @@ return(
           <option  value="0"  selected disabled hidden>Interview Length</option>
           <option value="5" >Short (5 Questions)</option>
           <option value="8" >Medium (8 Questions)</option>
-          <option value="12" >Long (12 Questions)</option>
+          <option value="8" >Medium (8 Questions)</option>
+         <option value="12" >Long (12 Questions)</option>
     </select>
 
-    <button onClick = {() => {decrement(); initialCompletion();}} className="flex items-center bg-blue-950 font-medium text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start<div className="ml-5 "><MdNavigateNext size="70px"className="text-white"/></div></button>
+    <button onClick = {() => {writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value); decrement(); initialCompletion();}} className="flex items-center bg-blue-950 font-medium text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
+        <div className="ml-5 "><MdNavigateNext size="70px"className="text-white"/></div>
+    </button>
     </div>
 
 

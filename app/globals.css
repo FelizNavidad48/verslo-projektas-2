@@ -14,3 +14,7 @@ select {
   input {
     outline: none;
 }
+
+.icon path{
+    stroke: white;
+  }
