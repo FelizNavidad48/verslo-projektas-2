@@ -2,7 +2,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, push } from "firebase/database";
+import { getDatabase, ref, set, push, onChildAdded, onValue } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,20 +22,35 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+export function retrieveDataById(id:any){
+  var array  = ["","",""];
+  const db = getDatabase();
+  const dbRefrence = ref(db, 'userCustomizationData/' + id);
+  onValue(dbRefrence, (snapshot) => {
+  array[0] = snapshot.val().companyName;
+  array[1] = snapshot.val().position;
+  array[2] = snapshot.val().typeOfQuestions;
+
+  });
+
+
+  return array;
+}
+
 export function writeInitialCustomizationData(companyName: any, position: any, typeOfQuestions: any) {
 
   const db = getDatabase();
   const postListRef = ref(db, 'userCustomizationData/');
   const newPostRef = push(postListRef);
-console.log(companyName)
-
-console.log(position)
-console.log(typeOfQuestions)
+  let pageId;
   set(newPostRef, {
     companyName: companyName,
     position: position,
     typeOfQuestions: typeOfQuestions,
 });
-const pageId = "-NZcBD1_RxUQ_DICJhCu";
+
+onChildAdded(postListRef, (data) => { console.log("HELLO");pageId = data.key});
+
+return pageId;
 
 }

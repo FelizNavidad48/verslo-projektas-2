@@ -31,22 +31,15 @@ export default function Home(){
       
       <br />
       
-      <button onClick={() => {
-        initialCompletion();
-        
-      }}    
-      > Submit </button>
+      
 
       <br />
 
-      <textarea id = "userResponse"></textarea>
+     
 
       <br />
     
-      <button onClick={() => {
-        nextCompletion();
-  
-      }}> Next Question </button>
+      
 
       <br />
 
