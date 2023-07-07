@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height:{
+        'fit-content': 'fit-content'
+      },
       backgroundImage: {
         'back': "url('/back.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

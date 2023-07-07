@@ -23,17 +23,19 @@ export const initialCompletion = async (id : string) =>{
     messages: messageArray,
   });
   qa.push(input);
-  var element = document.getElementById("initialResponse")!;
+  var element = document.getElementById("gptResponse0")!;
   messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
   
-  element.innerHTML = chatCompletion.data.choices[0].message.content;
+  messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
   qa.push(chatCompletion.data.choices[0].message.content);
-  //return chatCompletion.data.choices[0].message.content;
+  element.innerHTML = chatCompletion.data.choices[0].message.content;
 }
-
-export const nextCompletion = async () =>{ 
+//
+export const nextCompletion = async (id:number) =>{
+    
     var userResponse = ((document.getElementById("userResponse")) as HTMLInputElement).value;
-    qa.push(((document.getElementById("userResponse")) as HTMLInputElement).value);
+    qa.push(userResponse);
+
     messageArray.push({role: "user", content: userResponse});
     messageArray.push({role: "system", content: "Generate next question. Continue your role as an interviewer and answer with only the question without interacting with the user."});
      const chatCompletion = await openai.createChatCompletion({
@@ -41,8 +43,10 @@ export const nextCompletion = async () =>{
      messages: messageArray,
    });
    
-   var element = document.getElementById("response")!;
+   var element = document.getElementById("gptResponse"+(id-1))!;
+   //var elementUserRespone = document.getElementById("gptResponse" +(id-2)!)!;
    messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
+   //elementUserRespone.innerHTML = userResponse
    element.innerHTML = chatCompletion.data.choices[0].message.content;
    qa.push(chatCompletion.data.choices[0].message.content);
  }

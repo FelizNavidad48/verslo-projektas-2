@@ -49,7 +49,7 @@ export function writeInitialCustomizationData(companyName: any, position: any, t
     typeOfQuestions: typeOfQuestions,
 });
 
-onChildAdded(postListRef, (data) => { console.log("HELLO");pageId = data.key});
+onChildAdded(postListRef, (data) => { pageId = data.key});
 
 return pageId;
 
