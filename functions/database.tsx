@@ -2,7 +2,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, push, onChildAdded, onValue } from "firebase/database";
+import { getDatabase, ref, set,get, push, onChildAdded, onValue } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,21 +23,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export function retrieveDataById(id:any){
-  var array  = ["","",""];
+  var array  = ["","","",0];
   const db = getDatabase();
   const dbRefrence = ref(db, 'userCustomizationData/' + id);
   onValue(dbRefrence, (snapshot) => {
-  array[0] = snapshot.val().companyName;
-  array[1] = snapshot.val().position;
-  array[2] = snapshot.val().typeOfQuestions;
+    array[0] = snapshot.val().companyName;
+    array[1] = snapshot.val().position;
+    array[2] = snapshot.val().typeOfQuestions;
+    array[3] = parseInt(snapshot.val().amountOfQuestions);
 
+    
   });
-
-
   return array;
+  
 }
 
-export function writeInitialCustomizationData(companyName: any, position: any, typeOfQuestions: any) {
+export function writeInitialCustomizationData(companyName: any, position: any, typeOfQuestions: any, amount:any) {
 
   const db = getDatabase();
   const postListRef = ref(db, 'userCustomizationData/');
@@ -47,6 +48,7 @@ export function writeInitialCustomizationData(companyName: any, position: any, t
     companyName: companyName,
     position: position,
     typeOfQuestions: typeOfQuestions,
+    amountOfQuestions: amount,
 });
 
 onChildAdded(postListRef, (data) => { pageId = data.key});

@@ -15,6 +15,7 @@ export const initialCompletion = async (id : string) =>{
   var inputCompany  = array[0]
   var inputPosition = array[1]
   var inputQuestion = array[2]
+  var amount = array[3]
 
    var input = "Imagine you are a hiring manager at " + inputCompany + " and you are interviewing me for " + inputPosition +" position. Firstly understand what tasks does " + inputPosition + " do. What one specific "+ inputQuestion +" question would you ask? Use up to two sentences. From this point the user is the interviewee and you are the interviewer. Be very specific and give a lot of details in your question.";
     messageArray.push({role: "user", content: input});

@@ -7,13 +7,26 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import {initialCompletion, nextCompletion} from '../functions/openai';
 import { useState } from "react";
-import { writeInitialCustomizationData } from "../functions/database";
+import Swal from "sweetalert2";
+import { retrieveDataById, writeInitialCustomizationData } from "../functions/database";
 export function Start(props) {
     const [state, setState] = useState(0);
     const router =  useRouter();
 
     function decrement() {
         setState(state-1);
+    }
+    function confirmEntries(){
+        if(document.getElementById("company").value == "" || document.getElementById("position").value == "" || document.getElementById("typeQuestions").value == "" || document.getElementById('amount').value == ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Missing data',
+                text: 'Fill in all required fields',
+              })
+            return false;
+        } 
+        return true;
+
     }
 return(
 <div className="flex flex-col space-y-10 h-screen items-center justify-center py-28 bg-back">
@@ -33,20 +46,19 @@ return(
     
     <div className="grid-cols-1 w-64 h-52 space-y-6 text-2xl">
     <select  className=" drop-shadow-xl h-1/3 w-64 py-2 px-2 rounded-md align-middle" id="typeQuestions">
-          <option  value=""  selected disabled hidden>Type of Questions</option>
+          <option    selected disabled hidden>Type of Questions</option>
           <option value="HR">HR</option>
           <option value="Job Tasks">Job Tasks</option>
           <option value="HR and Job Tasks">Both</option>
     </select>
-    <select  className=" drop-shadow-xl h-1/3 w-64 py-2 px-2 rounded-md align-middle" onChange={e=>setState(e.target.value)} id="amount" >
-          <option  value="0"  selected disabled hidden>Interview Length</option>
+    <select  className=" drop-shadow-xl h-1/3 w-64 py-2 px-2 rounded-md align-middle"  id="amount" >
+          <option  value=""  selected disabled hidden>Interview Length</option>
           <option value="5" >Short (5 Questions)</option>
-          <option value="8" >Medium (8 Questions)</option>
           <option value="8" >Medium (8 Questions)</option>
          <option value="12" >Long (12 Questions)</option>
     </select>
 
-    <button onClick = {() => {router.push('/start/interview/' + writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value)); decrement()}} className="flex items-center bg-blue-950 font-medium text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
+    <button onClick = {() => {confirmEntries()?( router.push('/start/interview/' + writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value, document.getElementById('amount').value))):console.log("false")}} className="flex items-center bg-blue-950 font-medium text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
         <div className="ml-5 "><MdNavigateNext size="70px"className="text-white"/></div>
     </button>
     </div>
