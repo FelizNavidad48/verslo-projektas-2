@@ -19,7 +19,7 @@ export default function interview({ params }: { params: { id: string } }) {
   const router =  useRouter();
   //Retrieves data from the previous page by using the id of the page
   useEffect(() => {
-    //initialCompletion(params.id)
+    initialCompletion(params.id)
     var counter = retrieveDataById(params.id)[3];
     //@ts-ignore
     setCounter(counter);
@@ -63,7 +63,7 @@ export default function interview({ params }: { params: { id: string } }) {
       setCounter(count-1),
       addMessage(olderArray => [...olderArray, showUserResponse() ]),
        addMessage(oldArray => [...oldArray, ''])
-       //,nextCompletion(messages.length+2)
+       ,nextCompletion(messages.length+2)
     }
   }
   
@@ -83,7 +83,7 @@ export default function interview({ params }: { params: { id: string } }) {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Swal.fire('Your Interview has been saved!', '', 'success')
-          
+          fillChatData(params.id)
           router.push("/start/interview/"+params.id+"/review")
         }
         else{
@@ -133,7 +133,6 @@ export default function interview({ params }: { params: { id: string } }) {
       
       <InterviewTextAreaGradient  id='userResponse'  placeholder='Enter your text here' disabled={false} />
       <button onClick={submitButton} className='flex mb-1.25 w-18 rounded-2xl h-18 justify-center items-center p-0.25 bg-gradient-to-l from-black from-1% to-90% to-blue-900'><MdNavigateNext size='70px' className='text-white'/></button>
-      <button onClick={() => fillChatData(params.id, messages)}> HELLO </button>
       </div>
 
     </div>

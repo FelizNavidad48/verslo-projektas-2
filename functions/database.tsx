@@ -60,7 +60,7 @@ return pageId;
 
 }
 
-export function fillChatData(id:any, messages:any) {
+export function fillChatData(id:any) {
 
   var chatArray =[];
   
