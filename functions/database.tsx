@@ -1,8 +1,9 @@
+//@ts-nocheck
 'use client';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set,get, push, onChildAdded, onValue } from "firebase/database";
+import { getDatabase, ref, set,child, get, push, onChildAdded, onValue } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,7 +26,7 @@ const app = initializeApp(firebaseConfig);
 export function retrieveDataById(id:any){
   var array  = ["","","",0];
   const db = getDatabase();
-  const dbRefrence = ref(db, 'userCustomizationData/' + id);
+  const dbRefrence = ref(db, 'interview/' + id);
   onValue(dbRefrence, (snapshot) => {
     array[0] = snapshot.val().companyName;
     array[1] = snapshot.val().position;
@@ -41,7 +42,7 @@ export function retrieveDataById(id:any){
 export function writeInitialCustomizationData(companyName: any, position: any, typeOfQuestions: any, amount:any) {
 
   const db = getDatabase();
-  const postListRef = ref(db, 'userCustomizationData/');
+  const postListRef = ref(db, 'interview/');
   const newPostRef = push(postListRef);
   let pageId;
   set(newPostRef, {
@@ -51,8 +52,34 @@ export function writeInitialCustomizationData(companyName: any, position: any, t
     amountOfQuestions: amount,
 });
 
+
+
 onChildAdded(postListRef, (data) => { pageId = data.key});
 
 return pageId;
 
+}
+
+export function fillChatData(id:any, messages:any) {
+
+  var chatArray =[];
+  
+  var textAreas = document.getElementsByName("interviewtextarea");
+  textAreas.forEach(element => {
+    chatArray.push(element.innerHTML);
+  });
+
+  const db = getDatabase();
+  
+    
+
+  for(let i =0; i<chatArray.length;i++){
+    const postListRef = ref(db, 'interview/'+id +"/chat/"+`${i}`);
+    set(postListRef, {
+      text: chatArray[i],
+    });
+  }
+    
+   
+  
 }

@@ -6,7 +6,7 @@ export function Navbar () {
         <nav className='flex justify-center items-center rectangle'>
         
           <div className='w-52'>
-                <img src='/logo2.png'/>
+                <img href="https://interwio.com/start" src='/logo2.png'/>
           </div>
 
         </nav>

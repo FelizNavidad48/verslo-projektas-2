@@ -10,6 +10,12 @@ module.exports = {
       height:{
         'fit-content': 'fit-content'
       },
+      spacing:{
+        1.25:'5.5px',
+      },
+      padding:{
+        0.25:'1px',
+      },
       backgroundImage: {
         'back': "url('/back.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -10,12 +10,9 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { retrieveDataById, writeInitialCustomizationData } from "../functions/database";
 export function Start(props) {
-    const [state, setState] = useState(0);
+    const [state, setState] = useState(1);
     const router =  useRouter();
 
-    function decrement() {
-        setState(state-1);
-    }
     function confirmEntries(){
         if(document.getElementById("company").value == "" || document.getElementById("position").value == "" || document.getElementById("typeQuestions").value == "" || document.getElementById('amount').value == ""){
             Swal.fire({
@@ -58,8 +55,8 @@ return(
          <option value="12" >Long (12 Questions)</option>
     </select>
 
-    <button onClick = {() => {confirmEntries()?( router.push('/start/interview/' + writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value, document.getElementById('amount').value))):console.log("false")}} className="flex items-center bg-blue-950 font-medium text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
-        <div className="ml-5 "><MdNavigateNext size="70px"className="text-white"/></div>
+    <button onClick = {() => {confirmEntries()?( router.push('/start/interview/' + writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value, document.getElementById('amount').value))):console.log("false")}} className="flex items-center bg-gradient-to-r from-black from-1% to-90% to-blue-900 font-medium  text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
+        <div className="ml-5 "><MdNavigateNext size="70px" className=" text-white"/></div>
     </button>
     </div>
 
