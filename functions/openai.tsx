@@ -17,7 +17,7 @@ export const initialCompletion = async (id : string) =>{
   var inputQuestion = array[2]
   var amount = array[3]
 
-   var input = "Imagine you are a hiring manager at " + inputCompany + " and you are interviewing me for " + inputPosition +" position. Firstly understand what tasks does " + inputPosition + " do. What one specific "+ inputQuestion +" question would you ask? Use up to two sentences. From this point the user is the interviewee and you are the interviewer. Be very specific and give a lot of details in your question.";
+   var input = "Imagine you are a hiring manager at " + inputCompany + " and you are interviewing me for " + inputPosition +" position. Firstly understand what tasks does " + inputPosition + " do. What one specific "+ inputQuestion +" question would you ask? Use one sentence. From this point the user is the interviewee and you are the interviewer. Be very specific and give a lot of details in your question.";
     messageArray.push({role: "user", content: input});
     const chatCompletion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -38,7 +38,7 @@ export const nextCompletion = async (id:number) =>{
     qa.push(userResponse);
 
     messageArray.push({role: "user", content: userResponse});
-    messageArray.push({role: "system", content: "Generate next question. Continue your role as an interviewer and answer with only the question without interacting with the user."});
+    messageArray.push({role: "system", content: "Generate next question, make sure it is not related with the previous question. Unless you do not understand the answer. Continue your role as an interviewer and answer with only the question without interacting with the user. "});
      const chatCompletion = await openai.createChatCompletion({
      model: "gpt-3.5-turbo",
      messages: messageArray,
