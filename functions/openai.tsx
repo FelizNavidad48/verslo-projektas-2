@@ -7,6 +7,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 var qa = ["default"];
+var reviewArray = [];
 
 
 export const initialCompletion = async (id : string) =>{ 
@@ -25,7 +26,6 @@ export const initialCompletion = async (id : string) =>{
   });
   qa.push(input);
   var element = document.getElementById("gptResponse0")!;
-  messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
   
   messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
   qa.push(chatCompletion.data.choices[0].message.content);
@@ -51,5 +51,25 @@ export const nextCompletion = async (id:number) =>{
    element.innerHTML = chatCompletion.data.choices[0].message.content;
    qa.push(chatCompletion.data.choices[0].message.content);
  }
+
+export function logArray(){
+  messageArray.forEach(element => console.log(element));
+
+}
+
+export const generateReview = async (number:number) =>{
+    
+  messageArray.push({role: "system", content: "Generate review of how well the user answered question number " + number + ". Be very critical and point out specific details where the interviewee could improve. Do not write over 3 sentences."  });
+
+   const chatCompletion = await openai.createChatCompletion({
+   model: "gpt-3.5-turbo",
+   messages: messageArray,
+ });
+ var element = document.getElementById("conversation"+(number+1))!;
+   messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
+   element.innerHTML = chatCompletion.data.choices[0].message.content;
+   qa.push(chatCompletion.data.choices[0].message.content);
+ 
+}
 
  

@@ -3,7 +3,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set,child, get, push, onChildAdded, onValue } from "firebase/database";
+import { getDatabase, ref, set,child, get, push, onChildAdded, onValue, getChildrenCount } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -83,3 +83,34 @@ export function fillChatData(id:any) {
    
   
 }
+
+export function getMessageArray(id:any){
+  const db = getDatabase();
+  const dbRefrence = ref(db, 'interview/'+id +"/chat/");
+  onValue(dbRefrence, (snapshot) => {
+    return(snapshot.size)
+    
+     
+
+  });
+
+}
+
+
+export function fillTextAreas(id:any) {
+  const db = getDatabase();
+  const dbRefrence = ref(db, 'interview/'+id +"/chat/");
+  onValue(dbRefrence, (snapshot) => {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+        var element = document.getElementById("conversation"+key);
+        element.innerHTML = childSnapshot.val().text;
+      
+     
+
+  });
+});
+}
+
+
+

@@ -59,6 +59,7 @@ return(
     <button onClick = {() => {confirmEntries()?( router.push('/start/interview/' + writeInitialCustomizationData(document.getElementById("company").value , document.getElementById("position").value, document.getElementById("typeQuestions").value, document.getElementById('amount').value))):console.log("false")}} className="flex items-center bg-gradient-to-r from-black from-35% to-99% to-blue-700 font-medium  text-4xl justify-end text-white drop-shadow-xl w-64 h-1/3 py-2 px-2 rounded-md align-middle hover:bg-black hover:text-5xl  duration-500 ">Start
         <div className="ml-5 "><MdNavigateNext size="70px" className=" text-white"/></div>
     </button>
+    
     </div>
 
 

@@ -3,7 +3,7 @@
 //imports
 import {InterviewTextArea, InterviewTextAreaG, InterviewTextAreaGradient} from '../../../../components/InterviewTextArea';
 import { useState,useRef, useEffect} from 'react';
-import {initialCompletion, nextCompletion} from '../../../../functions/openai';
+import {initialCompletion, logArray, nextCompletion} from '../../../../functions/openai';
 import { fillChatData, retrieveDataById } from '../../../../functions/database';
 import {MdNavigateNext} from 'react-icons/md';
 import { Counter } from '../../../../components/counter';
@@ -133,6 +133,7 @@ export default function interview({ params }: { params: { id: string } }) {
       
       <InterviewTextAreaGradient  id='userResponse'  placeholder='Enter your text here' disabled={false} />
       <button onClick={submitButton} className='flex mb-1.25 w-18 rounded-2xl h-18 justify-center items-center p-0.25 bg-gradient-to-l from-black from-1% to-90% to-blue-900'><MdNavigateNext size='70px' className='text-white'/></button>
+  
       </div>
 
     </div>

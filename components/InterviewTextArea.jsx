@@ -23,3 +23,4 @@ export function InterviewTextAreaGradient({ id, placeholder, disabled}){
         </div>
     )
 }
+
