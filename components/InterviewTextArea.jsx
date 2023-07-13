@@ -1,3 +1,5 @@
+import { MdExpandMore } from "react-icons/md"
+
 export function InterviewTextArea({id, placeholder, disabled, value}){
 
     return (
@@ -24,3 +26,29 @@ export function InterviewTextAreaGradient({ id, placeholder, disabled}){
     )
 }
 
+export function ReviewSpace({ id, disabled}){
+   
+    return (
+        <div className="w-full h-full">
+            <button  id={id}  className="w-full h-full bg-zinc-400  text-white drop-shadow-2xl pt-4 px-2 rounded-2xl text-2xl flex items-center " ><h1 className="">Review</h1><div className="grow flex justify-end"><MdExpandMore size='50px'/></div></button>
+        </div>
+    )
+}
+
+export function ReviewSpaceC({ id, disabled}){
+   
+    return (
+        <div className="w-full h-full">
+            <button  id={id}  className="w-full h-full bg-zinc-400  text-white drop-shadow-2xl pt-8 px-2 rounded-2xl text-2xl flex flex-col items-start text-left " ><h1 className="">Review</h1><div className="grow flex justify-end"></div></button>
+        </div>
+    )
+}
+
+export function ReviewSpaceA({ id, disabled}){
+   
+    return (
+        <div className="w-full h-full">
+            <button  id={id}  className="w-full h-full bg-zinc-400  text-white drop-shadow-2xl pt-8 px-2 rounded-2xl text-2xl flex flex-col items-start text-left" ><h1 className="">Your Answer</h1><div className="grow flex justify-end"><MdExpandMore size='50px'/></div></button>
+        </div>
+    )
+}

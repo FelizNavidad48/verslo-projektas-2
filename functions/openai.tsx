@@ -59,15 +59,15 @@ export function logArray(){
 
 export const generateReview = async (number:number) =>{
     
-  messageArray.push({role: "system", content: "Generate review of how well the user answered question number " + number + ". Be very critical and point out specific details where the interviewee could improve. Do not write over 3 sentences."  });
+  messageArray.push({role: "system", content: "Generate review of how well the user answered question number " + (number-1) + ". STRICTLY DO not mention the question number in your answer. Be very critical and point out specific details where the interviewee could improve. Do not write over 3 sentences."  });
 
    const chatCompletion = await openai.createChatCompletion({
    model: "gpt-3.5-turbo",
    messages: messageArray,
  });
- var element = document.getElementById("conversation"+(number+1))!;
+ var element = document.getElementById("conversation"+(number))!;
    messageArray.push({role: "assistant", content: chatCompletion.data.choices[0].message.content});
-   element.innerHTML = chatCompletion.data.choices[0].message.content;
+   element.innerHTML = '<h1>Review</h1>'+chatCompletion.data.choices[0].message.content;
    qa.push(chatCompletion.data.choices[0].message.content);
  
 }

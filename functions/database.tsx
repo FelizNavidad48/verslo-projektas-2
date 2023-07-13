@@ -100,11 +100,16 @@ export function getMessageArray(id:any){
 export function fillTextAreas(id:any) {
   const db = getDatabase();
   const dbRefrence = ref(db, 'interview/'+id +"/chat/");
+  let count = 1;
   onValue(dbRefrence, (snapshot) => {
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
+      if(key%2==0){
         var element = document.getElementById("conversation"+key);
-        element.innerHTML = childSnapshot.val().text;
+        element.innerHTML = count+ ". "+ childSnapshot.val().text;
+        count++;
+      }
+        
       
      
 
@@ -113,4 +118,14 @@ export function fillTextAreas(id:any) {
 }
 
 
+
+export function fillAnswer(id:any, number:number) {
+  const db = getDatabase();
+  const dbRefrence = ref(db, 'interview/'+id +"/chat/"+number+"/");
+  onValue(dbRefrence, (snapshot) => {
+    console.log()
+    var element = document.getElementById("answer"+number);
+    element.innerHTML =  '<h1>Your Answer</h1>'+snapshot.val().text;
+});
+}
 
